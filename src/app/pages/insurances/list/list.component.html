@@ -1,0 +1,37 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Seguros</h3>
+        </div>
+        <div class="card-body">
+         <table class="table">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Entidad Aseguradora</th>
+            <th scope="col">Número de Póliza</th>
+            <th scope="col">Opciones</th>
+          </tr>
+          <tr *ngFor="let insurance of insurances">
+            <td>{{insurance.id}}</td>
+            <td>{{insurance.name}}</td>
+            <td>{{insurance.insurance_entity}}</td>
+            <td>{{insurance.insurance_number}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="view(insurance.id)">Ver</button>
+              <button class="btn btn-primary" (click)="edit(insurance.id)">Editar</button>
+              <button class="btn btn-danger" (click)="delete(insurance.id)">Eliminar</button>
+            </td>
+          </tr>
+         </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,5 +20,23 @@ export const AdminLayoutRoutes: Routes = [
             loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)
           }
         ]
+    },
+    {
+        path: 'procedures',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('src/app/pages/procedures/procedures.module').then(m => m.ProceduresModule)
+          }
+        ]
+    },
+    {
+      path: 'insurances',
+      children: [
+        {
+          path: '',
+          loadChildren: () => import('src/app/pages/insurances/insurances.module').then(m => m.InsurancesModule)
+        }
+      ]
     }
 ];
