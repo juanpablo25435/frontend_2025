@@ -37,6 +37,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/procedures/update', id]); // Cambiado /departments → /procedures
   }
 
+  create() {
+    this.router.navigate(['/procedures/create']); // Cambiado /departments → /procedures
+  }
+
   delete(id: number) {
     console.log("Delete procedure with id:", id); // Cambiado department → procedure
     Swal.fire({

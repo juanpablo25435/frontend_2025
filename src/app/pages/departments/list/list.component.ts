@@ -36,6 +36,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/departments/update', id]);
   }
 
+  create() {
+    this.router.navigate(['/departments/create']);
+  }
+
   delete(id: number) {
     console.log("Delete department with id:", id);
     Swal.fire({

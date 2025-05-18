@@ -59,6 +59,15 @@ const routes: Routes =[
         loadChildren: () => import('src/app/pages/insurances/insurances.module').then(m => m.InsurancesModule)
       }
     ]
+  },
+  {
+    path: 'specialties',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/specialties/specialties.module').then(m => m.SpecialtiesModule)
+      }
+    ]
   }
 ];
 @NgModule({
