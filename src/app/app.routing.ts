@@ -32,9 +32,17 @@ const routes: Routes =[
   }, {
     path: '**',
     redirectTo: 'dashboard'
+  },
+  {
+    path: 'departments',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)
+      }
+    ]
   }
 ];
-
 @NgModule({
   imports: [
     CommonModule,

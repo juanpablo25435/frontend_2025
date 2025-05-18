@@ -11,5 +11,14 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent }
+    { path: 'maps',           component: MapsComponent },
+    {
+        path: 'departments',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)
+          }
+        ]
+    }
 ];
