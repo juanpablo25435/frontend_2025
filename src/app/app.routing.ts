@@ -362,6 +362,18 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "combo-machines",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/combo-machines/combo-machines.module").then(
+            (m) => m.ComboMachinesModule
+          ),
+      },
+    ],
+  },
   
 ];
 @NgModule({

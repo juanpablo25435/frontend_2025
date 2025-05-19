@@ -5,7 +5,7 @@ import { Maintenance } from 'src/app/models/maintenance.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-maintenance-list',
+  selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
