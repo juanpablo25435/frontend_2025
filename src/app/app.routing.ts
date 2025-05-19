@@ -182,6 +182,30 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "chats",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/chats/chats.module").then(
+            (m) => m.ChatsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "operators",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/operators/operators.module").then(
+            (m) => m.OperatorsModule
+          ),
+      },
+    ],
+  }
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,89 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle del Operador</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación de Operador</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización de Operador</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            
+            <!-- Campo ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="operator.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Nombre -->
+            <div class="row">
+              <div class="col-3">Nombre</div>
+              <div class="col-9">
+                <input type="text" class="form-control" formControlName="name" [disabled]="mode==1">
+                <div *ngIf="getTheFormGroup.name.errors && (getTheFormGroup.name.dirty || getTheFormGroup.name.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.name.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.name.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.name.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Operator ID -->
+            <div class="row">
+              <div class="col-3">Operator ID</div>
+              <div class="col-9">
+                <input type="number" class="form-control" formControlName="operator_id" [disabled]="mode==1">
+                <div *ngIf="getTheFormGroup.operator_id.errors && (getTheFormGroup.operator_id.dirty || getTheFormGroup.operator_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.operator_id.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.operator_id.errors.min" class="msnError">
+                    Debe ser mayor que 0
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Usuario -->
+            <div class="row">
+              <div class="col-3">Usuario</div>
+              <div class="col-9">
+                <select class="form-control" formControlName="user_id" [disabled]="mode==1">
+                  <option value="" disabled>Seleccione un usuario</option>
+                  <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.user_id.errors && (getTheFormGroup.user_id.dirty || getTheFormGroup.user_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.user_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
