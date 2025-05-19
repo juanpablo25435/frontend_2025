@@ -25,8 +25,8 @@
             <tbody>
               <tr *ngFor="let shift of shifts">
                 <td>{{ shift.id }}</td>
-                <td>{{ shift.start_time | date: 'shortTime' }}</td>
-                <td>{{ shift.end_time | date: 'shortTime' }}</td>
+                <td>{{ shift.start_time}}</td>
+                <td>{{ shift.end_time}}</td>
                 <td>{{ shift.machine_id }}</td>
                 <td>{{ shift.operator_id }}</td>
                 <td>

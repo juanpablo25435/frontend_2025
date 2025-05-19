@@ -1,0 +1,70 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="novelty.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Descripción -->
+            <div class="row">
+              <div class="col-3">Descripción</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [(ngModel)]="novelty.novelty_description"
+                  [disabled]="mode==1" formControlName="novelty_description">
+                <div *ngIf="getTheFormGroup.novelty_description.errors && (getTheFormGroup.novelty_description.dirty || getTheFormGroup.novelty_description.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.novelty_description.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.novelty_description.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.novelty_description.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.novelty_description.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.novelty_description.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Shift ID -->
+            <div class="row">
+              <div class="col-3">ID Turno</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="novelty.shift_id"
+                  [disabled]="mode==1" formControlName="shift_id">
+                <div *ngIf="getTheFormGroup.shift_id.errors && (getTheFormGroup.shift_id.dirty || getTheFormGroup.shift_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.shift_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-success" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-warning" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

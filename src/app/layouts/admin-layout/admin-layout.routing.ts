@@ -138,4 +138,40 @@ export const AdminLayoutRoutes: Routes = [
         },
       ],
     },
+    {
+      path: "works",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/works/works.module").then(
+              (m) => m.WorksModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "novelties",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/novelties/novelties.module").then(
+              (m) => m.NoveltiesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "operator-specialties",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/operator-specialties/operator-specialties.module").then(
+              (m) => m.OperatorSpecialtiesModule
+            ),
+        },
+      ],
+    },
 ];

@@ -24,8 +24,8 @@ export class ManageComponent implements OnInit {
   ) {
     this.shift = {
       id: 0,
-      start_time: new Date(),
-      end_time: new Date(),
+      start_time: 0,
+      end_time: 0,
       machine_id: 0,
       operator_id: 0
     };
@@ -69,11 +69,11 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      start_time: ['', [Validators.required]],
-      end_time: ['', [Validators.required]],
-      machine_id: [0, [Validators.required, Validators.min(1)]],
-      operator_id: [0, [Validators.required, Validators.min(1)]]
-    });
+    start_time: [0, [Validators.required, Validators.min(0), Validators.max(2359)]],
+    end_time: [0, [Validators.required, Validators.min(0), Validators.max(2359)]],
+    machine_id: [0, [Validators.required, Validators.min(1)]],
+    operator_id: [0, [Validators.required, Validators.min(1)]]
+  });
   }
 
   get getTheFormGroup() {

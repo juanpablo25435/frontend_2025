@@ -1,0 +1,65 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup" (ngSubmit)="mode==2 ? create() : update()">
+          <div class="card-body container">
+            <!-- ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">ID</label>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="operatorSpecialty.id" disabled>
+              </div>
+            </div>
+
+            <!-- Operator ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">Operador</label>
+              <div class="col-9">
+                <select class="form-control" formControlName="operator_id" [disabled]="mode==1" [(ngModel)]="operatorSpecialty.operator_id" name="operator_id">
+                  <option value="" disabled>Seleccione un operador</option>
+                  <option *ngFor="let operator of operators" [value]="operator.id">{{operator.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.operator_id.errors && (getTheFormGroup.operator_id.dirty || getTheFormGroup.operator_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.operator_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specialty ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">Especialidad</label>
+              <div class="col-9">
+                <select class="form-control" formControlName="specialty_id" [disabled]="mode==1" [(ngModel)]="operatorSpecialty.specialty_id" name="specialty_id">
+                  <option value="" disabled>Seleccione una especialidad</option>
+                  <option *ngFor="let specialty of specialties" [value]="specialty.id">{{specialty.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.specialty_id.errors && (getTheFormGroup.specialty_id.dirty || getTheFormGroup.specialty_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.specialty_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" type="button" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" type="submit" class="btn btn-primary brn-block">Crear</button>
+                <button *ngIf="mode==3" type="submit" class="btn btn-primary brn-block">Actualizar</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
