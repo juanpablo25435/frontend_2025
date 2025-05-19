@@ -195,9 +195,7 @@ export const AdminLayoutRoutes: Routes = [
           ),
       },
     ],
-  }
-
-    },
+  },
     {
       path: "maintenances",
       children: [
@@ -254,6 +252,54 @@ export const AdminLayoutRoutes: Routes = [
           loadChildren: () =>
             import("src/app/pages/operator-specialties/operator-specialties.module").then(
               (m) => m.OperatorSpecialtiesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "evidences",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/evidences/evidences.module").then(
+              (m) => m.EvidencesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "machine-specialties",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/machine-specialties/machine-specialties.module").then(
+              (m) => m.MachineSpecialtiesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "spares",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/spares/spares.module").then(
+              (m) => m.SparesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "spare-procedures",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/spare-procedures/spare-procedures.module").then(
+              (m) => m.SpareProceduresModule
             ),
         },
       ],
