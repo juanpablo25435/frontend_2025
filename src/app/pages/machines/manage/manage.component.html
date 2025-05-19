@@ -1,0 +1,96 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Form card -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- ID Field -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="machine.id" disabled>
+              </div>
+            </div>
+            <br>
+
+            <!-- Name Field -->
+            <div class="row">
+              <div class="col-3">Nombre</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [(ngModel)]="machine.name"
+                  [disabled]="mode==1" formControlName="name">
+                <div *ngIf="getTheFormGroup.name.errors && (getTheFormGroup.name.dirty || getTheFormGroup.name.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.name.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.name.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.name.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Description Field -->
+            <div class="row">
+              <div class="col-3">Descripción</div>
+              <div class="col-9">
+                <textarea class="form-control" rows="3" [(ngModel)]="machine.description"
+                  [disabled]="mode==1" formControlName="description"></textarea>
+                <div *ngIf="getTheFormGroup.description.errors && (getTheFormGroup.description.dirty || getTheFormGroup.description.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.description.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.description.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.description.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.description.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.description.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Model Year Field -->
+            <div class="row">
+              <div class="col-3">Año del Modelo</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="machine.model_year"
+                  [disabled]="mode==1" formControlName="model_year" min="1900" max="2100">
+                <div *ngIf="getTheFormGroup.model_year.errors && (getTheFormGroup.model_year.dirty || getTheFormGroup.model_year.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.model_year.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.model_year.errors.min" class="msnError">
+                    El año mínimo es {{getTheFormGroup.model_year.errors.min.min}}
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.model_year.errors.max" class="msnError">
+                    El año máximo es {{getTheFormGroup.model_year.errors.max.max}}
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary btn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary btn-block" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary btn-block" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
