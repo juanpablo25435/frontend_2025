@@ -1,138 +1,196 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+import { Routes, RouterModule } from "@angular/router";
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
+import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 
-const routes: Routes =[
+const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
+    path: "",
+    redirectTo: "dashboard",
+    pathMatch: "full",
+  },
+  {
+    path: "",
     component: AdminLayoutComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-      }
-    ]
-  }, {
-    path: '',
+        path: "",
+        loadChildren: () =>
+          import("src/app/layouts/admin-layout/admin-layout.module").then(
+            (m) => m.AdminLayoutModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "",
     component: AuthLayoutComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
-      }
-    ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
+        path: "",
+        loadChildren: () =>
+          import("src/app/layouts/auth-layout/auth-layout.module").then(
+            (m) => m.AuthLayoutModule
+          ),
+      },
+    ],
   },
   {
-    path: 'departments',
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)
-      }
-    ]
+    path: "**",
+    redirectTo: "dashboard",
   },
   {
-    path: 'procedures',
+    path: "departments",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/procedures/procedures.module').then(m => m.ProceduresModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/departments/departments.module").then(
+            (m) => m.DepartmentsModule
+          ),
+      },
+    ],
   },
   {
-    path: 'insurances',
+    path: "procedures",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/insurances/insurances.module').then(m => m.InsurancesModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/procedures/procedures.module").then(
+            (m) => m.ProceduresModule
+          ),
+      },
+    ],
   },
   {
-    path: 'specialties',
+    path: "insurances",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/specialties/specialties.module').then(m => m.SpecialtiesModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/insurances/insurances.module").then(
+            (m) => m.InsurancesModule
+          ),
+      },
+    ],
   },
   {
-    path: 'municipalities',
+    path: "specialties",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/municipalities/municipalities.module').then(m => m.MunicipalitiesModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/specialties/specialties.module").then(
+            (m) => m.SpecialtiesModule
+          ),
+      },
+    ],
   },
   {
-    path: 'users',
+    path: "services-types",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/services-types/services-types.module").then(
+            (m) => m.ServicesTypesModule
+          ),
+      },
+    ],
   },
   {
-    path: 'governors',
+    path: "municipalities",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/governors/governors.module').then(m => m.GovernorsModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/municipalities/municipalities.module").then(
+            (m) => m.MunicipalitiesModule
+          ),
+      },
+    ],
   },
   {
-    path: 'machines',
+    path: "works",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/machines/machines.module').then(m => m.MachinesModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/works/works.module").then((m) => m.WorksModule),
+      },
+    ],
   },
   {
-    path: 'services',
+    path: "users",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/services/services.module').then(m => m.ServicesModule)
-      }
-    ]
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/users/users.module").then((m) => m.UsersModule),
+      },
+    ],
   },
   {
-    path: 'combos',
+    path: "invoices",
     children: [
       {
-        path: '',
-        loadChildren: () => import('src/app/pages/combos/combos.module').then(m => m.CombosModule)
-      }
-    ]
-  }
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/invoices/invoices.module").then(
+            (m) => m.InvoicesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "governors",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/governors/governors.module").then(
+            (m) => m.GovernorsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "machines",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/machines/machines.module").then(
+            (m) => m.MachinesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "services",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/services/services.module").then(
+            (m) => m.ServicesModule
+          ),
+      },
+    ],
+  },
 ];
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-      useHash: true
-    })
+    RouterModule.forRoot(routes, {
+      useHash: true,
+    }),
   ],
-  exports: [
-  ],
+  exports: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
