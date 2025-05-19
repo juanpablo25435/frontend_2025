@@ -1,0 +1,65 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- Campo ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="comboMachine.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Máquina -->
+            <div class="row">
+              <div class="col-3">ID Máquina</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="comboMachine.machine_id"
+                  [disabled]="mode==1" formControlName="machine_id">
+                <div *ngIf="getTheFormGroup.machine_id.errors && (getTheFormGroup.machine_id.dirty || getTheFormGroup.machine_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.machine_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Combo -->
+            <div class="row">
+              <div class="col-3">ID Combo</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="comboMachine.combo_id"
+                  [disabled]="mode==1" formControlName="combo_id">
+                <div *ngIf="getTheFormGroup.combo_id.errors && (getTheFormGroup.combo_id.dirty || getTheFormGroup.combo_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.combo_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary brn-block" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary brn-block" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

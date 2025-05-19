@@ -1,108 +1,136 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
-import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/tables/tables.component';
+import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
+import { IconsComponent } from "../../pages/icons/icons.component";
+import { MapsComponent } from "../../pages/maps/maps.component";
+import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
+import { TablesComponent } from "../../pages/tables/tables.component";
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'tables',         component: TablesComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    {
-        path: 'departments',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('src/app/pages/departments/departments.module').then(m => m.DepartmentsModule)
-          }
-        ]
-    },
-    {
-        path: 'procedures',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('src/app/pages/procedures/procedures.module').then(m => m.ProceduresModule)
-          }
-        ]
-    },
-    {
-      path: 'insurances',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/insurances/insurances.module').then(m => m.InsurancesModule)
-        }
-      ]
-    },
-    {
-      path: 'specialties',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/specialties/specialties.module').then(m => m.SpecialtiesModule)
-        }
-      ]
-    },
-    {
-      path: 'municipalities',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/municipalities/municipalities.module').then(m => m.MunicipalitiesModule)
-        }
-      ]
-    },
-    {
-      path: 'users',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
-        }
-      ]
-    },
-    {
-      path: 'governors',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/governors/governors.module').then(m => m.GovernorsModule)
-        }
-      ]
-    },
-    {
-      path: 'machines',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/machines/machines.module').then(m => m.MachinesModule)
-        }
-      ]
-    },
-    {
-      path: 'services',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/services/services.module').then(m => m.ServicesModule)
-        }
-      ]
-    },
-    {
-      path: 'combos',
-      children: [
-        {
-          path: '',
-          loadChildren: () => import('src/app/pages/combos/combos.module').then(m => m.CombosModule)
-        }
-      ]
-    },
-    {
+  { path: "dashboard", component: DashboardComponent },
+  { path: "user-profile", component: UserProfileComponent },
+  { path: "tables", component: TablesComponent },
+  { path: "icons", component: IconsComponent },
+  { path: "maps", component: MapsComponent },
+  {
+    path: "departments",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/departments/departments.module").then(
+            (m) => m.DepartmentsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/procedures/procedures.module").then(
+            (m) => m.ProceduresModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "insurances",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/insurances/insurances.module").then(
+            (m) => m.InsurancesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "specialties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/specialties/specialties.module").then(
+            (m) => m.SpecialtiesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "municipalities",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/municipalities/municipalities.module").then(
+            (m) => m.MunicipalitiesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "users",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/users/users.module").then((m) => m.UsersModule),
+      },
+    ],
+  },
+  {
+    path: "governors",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/governors/governors.module").then(
+            (m) => m.GovernorsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "machines",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/machines/machines.module").then(
+            (m) => m.MachinesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "services",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/services/services.module").then(
+            (m) => m.ServicesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "combos",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/combos/combos.module").then(
+            (m) => m.CombosModule
+          ),
+      },
+    ],
+  },
+  {
     path: "invoices",
     children: [
       {
@@ -142,9 +170,7 @@ export const AdminLayoutRoutes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/chats/chats.module").then(
-            (m) => m.ChatsModule
-          ),
+          import("src/app/pages/chats/chats.module").then((m) => m.ChatsModule),
       },
     ],
   },
@@ -166,9 +192,7 @@ export const AdminLayoutRoutes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/gps/gps.module").then(
-            (m) => m.GpsModule
-          ),
+          import("src/app/pages/gps/gps.module").then((m) => m.GpsModule),
       },
     ],
   },
@@ -195,67 +219,99 @@ export const AdminLayoutRoutes: Routes = [
           ),
       },
     ],
-  }
-
-    },
-    {
-      path: "maintenances",
-      children: [
-        {
-          path: "",
-          loadChildren: () =>
-            import("src/app/pages/maintenances/maintenances.module").then(
-              (m) => m.MaintenancesModule
-            ),
-        },
-      ],
-    },
-    {
-      path: "fees",
-      children: [
-        {
-          path: "",
-          loadChildren: () =>
-            import("src/app/pages/fees/fees.module").then(
-              (m) => m.FeesModule
-            ),
-        },
-      ],
-    },
-    {
-      path: "shifts",
-      children: [
-        {
-          path: "",
-          loadChildren: () =>
-            import("src/app/pages/shifts/shifts.module").then(
-              (m) => m.ShiftsModule
-            ),
-        },
-      ],
-    },
-    {
-      path: "novelties",
-      children: [
-        {
-          path: "",
-          loadChildren: () =>
-            import("src/app/pages/novelties/novelties.module").then(
-              (m) => m.NoveltiesModule
-            ),
-        },
-      ],
-    },
-    {
-      path: "operator-specialties",
-      children: [
-        {
-          path: "",
-          loadChildren: () =>
-            import("src/app/pages/operator-specialties/operator-specialties.module").then(
-              (m) => m.OperatorSpecialtiesModule
-            ),
-        },
-      ],
-    },
+  },
+  {
+    path: "maintenances",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/maintenances/maintenances.module").then(
+            (m) => m.MaintenancesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "fees",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/fees/fees.module").then((m) => m.FeesModule),
+      },
+    ],
+  },
+  {
+    path: "shifts",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/shifts/shifts.module").then(
+            (m) => m.ShiftsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "novelties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/novelties/novelties.module").then(
+            (m) => m.NoveltiesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "operator-specialties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import(
+            "src/app/pages/operator-specialties/operator-specialties.module"
+          ).then((m) => m.OperatorSpecialtiesModule),
+      },
+    ],
+  },
+  {
+    path: "maintenance-procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import(
+            "src/app/pages/maintenance-procedures/maintenance-procedures.module"
+          ).then((m) => m.MaintenanceProceduresModule),
+      },
+    ],
+  },
+  {
+    path: "combos-machines",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/combos-machines/combos-machines.module").then(
+            (m) => m.CombosMachinesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "work-municipalities",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/works-municipalities/works-municipalities.module").then(
+            (m) => m.WorksMunicipalitiesModule
+          ),
+      },
+    ],
+},
 ];

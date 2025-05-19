@@ -1,0 +1,38 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Combos de Máquinas</h3>
+        </div>
+        <div class="card-body">
+         <table class="table">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ID Máquina</th>
+            <th scope="col">ID Combo</th>
+            <th scope="col">Opciones</th>
+          </tr>
+          <tr *ngFor="let comboMachine of comboMachines">
+            <td>{{comboMachine.id}}</td>
+            <td>{{comboMachine.machine_id}}</td>
+            <td>{{comboMachine.combo_id}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="view(comboMachine.id)">Ver</button>
+              <button class="btn btn-primary" (click)="edit(comboMachine.id)">Editar</button>
+              <button class="btn btn-danger" (click)="delete(comboMachine.id)">Eliminar</button>
+            </td>
+          </tr>
+         </table>
+          <div class="mt-3 text-start">
+              <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

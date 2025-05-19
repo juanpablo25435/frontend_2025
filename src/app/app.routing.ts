@@ -212,9 +212,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/fees/fees.module").then(
-            (m) => m.FeesModule
-          ),
+          import("src/app/pages/fees/fees.module").then((m) => m.FeesModule),
       },
     ],
   },
@@ -248,9 +246,9 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/operator-specialties/operator-specialties.module").then(
-            (m) => m.OperatorSpecialtiesModule
-          ),
+          import(
+            "src/app/pages/operator-specialties/operator-specialties.module"
+          ).then((m) => m.OperatorSpecialtiesModule),
       },
     ],
   },
@@ -260,9 +258,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/chats/chats.module").then(
-            (m) => m.ChatsModule
-          ),
+          import("src/app/pages/chats/chats.module").then((m) => m.ChatsModule),
       },
     ],
   },
@@ -284,9 +280,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/gps/gps.module").then(
-            (m) => m.GpsModule
-          ),
+          import("src/app/pages/gps/gps.module").then((m) => m.GpsModule),
       },
     ],
   },
@@ -313,7 +307,43 @@ const routes: Routes = [
           ),
       },
     ],
-  }
+  },
+  {
+    path: "maintenance-procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import(
+            "src/app/pages/maintenance-procedures/maintenance-procedures.module"
+          ).then((m) => m.MaintenanceProceduresModule),
+      },
+    ],
+  },
+  {
+    path: "combos-machines",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/combos-machines/combos-machines.module").then(
+            (m) => m.CombosMachinesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "work-municipalities",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/works-municipalities/works-municipalities.module").then(
+            (m) => m.WorksMunicipalitiesModule
+          ),
+      },
+    ],
+  },
 ];
 @NgModule({
   imports: [
