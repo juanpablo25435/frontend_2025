@@ -279,6 +279,112 @@ export const AdminLayoutRoutes: Routes = [
     ],
   },
   {
+    path: "evidences",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/evidences/evidences.module").then(
+            (m) => m.EvidencesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "machine-specialties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import(
+            "src/app/pages/machine-specialties/machine-specialties.module"
+          ).then((m) => m.MachineSpecialtiesModule),
+      },
+    ],
+  },
+  {
+    path: "spares",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/spares/spares.module").then(
+            (m) => m.SparesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "spare-procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/spare-procedures/spare-procedures.module").then(
+            (m) => m.SpareProceduresModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "maintenances",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/maintenances/maintenances.module").then(
+            (m) => m.MaintenancesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "fees",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/fees/fees.module").then((m) => m.FeesModule),
+      },
+    ],
+  },
+  {
+    path: "shifts",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/shifts/shifts.module").then(
+            (m) => m.ShiftsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "novelties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/novelties/novelties.module").then(
+            (m) => m.NoveltiesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "operator-specialties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import(
+            "src/app/pages/operator-specialties/operator-specialties.module"
+          ).then((m) => m.OperatorSpecialtiesModule),
+      },
+    ],
+  },
+  {
     path: "maintenance-procedures",
     children: [
       {
@@ -308,10 +414,10 @@ export const AdminLayoutRoutes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("src/app/pages/works-municipalities/works-municipalities.module").then(
-            (m) => m.WorksMunicipalitiesModule
-          ),
+          import(
+            "src/app/pages/works-municipalities/works-municipalities.module"
+          ).then((m) => m.WorksMunicipalitiesModule),
       },
     ],
-},
+  },
 ];

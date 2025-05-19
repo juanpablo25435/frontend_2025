@@ -309,6 +309,54 @@ const routes: Routes = [
     ],
   },
   {
+    path: "evidences",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/evidences/evidences.module").then(
+            (m) => m.EvidencesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "machine-specialties",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/machine-specialties/machine-specialties.module").then(
+            (m) => m.MachineSpecialtiesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "spares",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/spares/spares.module").then(
+            (m) => m.SparesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "spare-procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/spare-procedures/spare-procedures.module").then(
+            (m) => m.SpareProceduresModule
+          ),
+      },
+    ],
+  },
+  {
     path: "maintenance-procedures",
     children: [
       {

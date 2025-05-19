@@ -11,25 +11,25 @@ export class ServiceTypeService {
   constructor(private http: HttpClient) { }
 
   list(): Observable<ServiceType[]> {
-    return this.http.get<ServiceType[]>(`${environment.url_ms_cinema}/services-types`);
+    return this.http.get<ServiceType[]>(`${environment.url_ms_cinema}/services_types`);
   }
 
   view(id: number): Observable<ServiceType> {
-    return this.http.get<ServiceType>(`${environment.url_ms_cinema}/services-types/${id}`);
+    return this.http.get<ServiceType>(`${environment.url_ms_cinema}/services_types/${id}`);
   }
 
   create(newServiceType: ServiceType): Observable<ServiceType> {
-    return this.http.post<ServiceType>(`${environment.url_ms_cinema}/services-types`, newServiceType);
+    return this.http.post<ServiceType>(`${environment.url_ms_cinema}/services_types`, newServiceType);
   }
 
   update(theServiceType: ServiceType): Observable<ServiceType> {
     return this.http.put<ServiceType>(
-      `${environment.url_ms_cinema}/services-types/${theServiceType.id}`, 
+      `${environment.url_ms_cinema}/services_types/${theServiceType.id}`, 
       theServiceType
     );
   }
 
   delete(id: number): Observable<ServiceType> {
-    return this.http.delete<ServiceType>(`${environment.url_ms_cinema}/services-types/${id}`);
+    return this.http.delete<ServiceType>(`${environment.url_ms_cinema}/services_types/${id}`);
   }
 }

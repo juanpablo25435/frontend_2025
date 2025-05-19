@@ -1,0 +1,65 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup" (ngSubmit)="mode==2 ? create() : update()">
+          <div class="card-body container">
+            <!-- ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">ID</label>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="machineSpecialty.id" disabled>
+              </div>
+            </div>
+
+            <!-- Machine ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">Máquina</label>
+              <div class="col-9">
+                <select class="form-control" formControlName="machine_id" [disabled]="mode==1" [(ngModel)]="machineSpecialty.machine_id" name="machine_id">
+                  <option value="" disabled>Seleccione una máquina</option>
+                  <option *ngFor="let machine of machines" [value]="machine.id">{{machine.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.machine_id.errors && (getTheFormGroup.machine_id.dirty || getTheFormGroup.machine_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.machine_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Type ID Field -->
+            <div class="row mb-3">
+              <label class="col-3 col-form-label">Tipo de Servicio</label>
+              <div class="col-9">
+                <select class="form-control" formControlName="service_type_id" [disabled]="mode==1" [(ngModel)]="machineSpecialty.service_type_id" name="service_type_id">
+                  <option value="" disabled>Seleccione un tipo de servicio</option>
+                  <option *ngFor="let serviceType of serviceTypes" [value]="serviceType.id">{{serviceType.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.service_type_id.errors && (getTheFormGroup.service_type_id.dirty || getTheFormGroup.service_type_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.service_type_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" type="button" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" type="submit" class="btn btn-primary brn-block">Crear</button>
+                <button *ngIf="mode==3" type="submit" class="btn btn-primary brn-block">Actualizar</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
