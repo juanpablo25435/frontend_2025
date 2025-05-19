@@ -113,6 +113,15 @@ const routes: Routes =[
         loadChildren: () => import('src/app/pages/services/services.module').then(m => m.ServicesModule)
       }
     ]
+  },
+  {
+    path: 'combos',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/combos/combos.module').then(m => m.CombosModule)
+      }
+    ]
   }
 ];
 @NgModule({

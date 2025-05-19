@@ -1,0 +1,105 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- Campo ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="combo.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Nombre -->
+            <div class="row">
+              <div class="col-3">Nombre</div>
+              <div class="col-9">
+                <input type="text" class="form-control" formControlName="name" [disabled]="mode==1">
+                <div *ngIf="getTheFormGroup.name.errors && (getTheFormGroup.name.dirty || getTheFormGroup.name.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.name.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.name.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.name.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.name.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Descripción -->
+            <div class="row">
+              <div class="col-3">Descripción</div>
+              <div class="col-9">
+                <textarea class="form-control" formControlName="description" rows="3" [disabled]="mode==1"></textarea>
+                <div *ngIf="getTheFormGroup.description.errors && (getTheFormGroup.description.dirty || getTheFormGroup.description.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.description.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.description.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.description.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.description.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.description.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Precio -->
+            <div class="row">
+              <div class="col-3">Precio</div>
+              <div class="col-9">
+                <input type="number" class="form-control" formControlName="price" [disabled]="mode==1" min="0" step="0.01">
+                <div *ngIf="getTheFormGroup.price.errors && (getTheFormGroup.price.dirty || getTheFormGroup.price.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.price.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.price.errors.min" class="msnError">
+                    Mínimo {{getTheFormGroup.price.errors.min.min}}
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Servicio (services_id) -->
+            <div class="row">
+              <div class="col-3">Servicio</div>
+              <div class="col-9">
+                <select class="form-control" formControlName="services_id" [disabled]="mode==1">
+                  <option value="" disabled>Seleccione un servicio</option>
+                  <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
+                </select>
+                <div *ngIf="getTheFormGroup.services_id.errors && (getTheFormGroup.services_id.dirty || getTheFormGroup.services_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.services_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary brn-block" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary brn-block" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
