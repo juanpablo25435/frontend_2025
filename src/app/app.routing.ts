@@ -68,7 +68,34 @@ const routes: Routes =[
         loadChildren: () => import('src/app/pages/specialties/specialties.module').then(m => m.SpecialtiesModule)
       }
     ]
+  },{
+    path: 'services-types',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/services-types/services-types.module').then(m => m.ServicesTypesModule)
+      }
+    ]
+  },
+  {
+    path: 'works',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/works/works.module').then(m => m.WorksModule)
+      }
+    ]
+  },
+  {
+    path: 'invoices',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/invoices/invoices.module').then(m => m.InvoicesModule)
+      }
+    ]
   }
+
 ];
 @NgModule({
   imports: [
