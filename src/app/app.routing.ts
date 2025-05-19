@@ -68,6 +68,51 @@ const routes: Routes =[
         loadChildren: () => import('src/app/pages/specialties/specialties.module').then(m => m.SpecialtiesModule)
       }
     ]
+  },
+  {
+    path: 'municipalities',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/municipalities/municipalities.module').then(m => m.MunicipalitiesModule)
+      }
+    ]
+  },
+  {
+    path: 'users',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
+      }
+    ]
+  },
+  {
+    path: 'governors',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/governors/governors.module').then(m => m.GovernorsModule)
+      }
+    ]
+  },
+  {
+    path: 'machines',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/machines/machines.module').then(m => m.MachinesModule)
+      }
+    ]
+  },
+  {
+    path: 'services',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/services/services.module').then(m => m.ServicesModule)
+      }
+    ]
   }
 ];
 @NgModule({
