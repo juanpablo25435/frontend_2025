@@ -1,0 +1,42 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Especialidades de Operadores</h3>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID Operador</th>
+                <th scope="col">ID Especialidad</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let operatorSpecialty of operatorSpecialties">
+                <td>{{ operatorSpecialty.id }}</td>
+                <td>{{ operatorSpecialty.operator_id }}</td>
+                <td>{{ operatorSpecialty.specialty_id }}</td>
+                <td>
+                  <button class="btn btn-primary" (click)="view(operatorSpecialty.id)">Ver</button>
+                  <button class="btn btn-primary" (click)="edit(operatorSpecialty.id)">Editar</button>
+                  <button class="btn btn-danger" (click)="delete(operatorSpecialty.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-3 text-start">
+            <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

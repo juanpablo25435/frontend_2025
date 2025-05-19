@@ -1,0 +1,89 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+
+            <!-- ID -->
+            <div class="row mb-3">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="shift.id" disabled>
+              </div>
+            </div>
+
+            <!-- Start Time -->
+            <div class="row mb-3">
+            <div class="col-3">Hora inicio</div>
+            <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="shift.start_time" [disabled]="mode==1" formControlName="start_time" min="0" max="2359" step="1">
+                <div *ngIf="getTheFormGroup.start_time.errors && (getTheFormGroup.start_time.dirty || getTheFormGroup.start_time.touched || trySend)">
+                <strong *ngIf="getTheFormGroup.start_time.errors.required" class="msnError">Requerido</strong>
+                <strong *ngIf="getTheFormGroup.start_time.errors.min || getTheFormGroup.start_time.errors.max" class="msnError">Valor fuera de rango</strong>
+                </div>
+            </div>
+            </div>
+
+            <!-- End Time -->
+            <div class="row mb-3">
+            <div class="col-3">Hora fin</div>
+            <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="shift.end_time" [disabled]="mode==1" formControlName="end_time" min="0" max="2359" step="1">
+                <div *ngIf="getTheFormGroup.end_time.errors && (getTheFormGroup.end_time.dirty || getTheFormGroup.end_time.touched || trySend)">
+                <strong *ngIf="getTheFormGroup.end_time.errors.required" class="msnError">Requerido</strong>
+                <strong *ngIf="getTheFormGroup.end_time.errors.min || getTheFormGroup.end_time.errors.max" class="msnError">Valor fuera de rango</strong>
+                </div>
+            </div>
+            </div>
+
+            <!-- Machine ID -->
+            <div class="row mb-3">
+              <div class="col-3">ID Máquina</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="shift.machine_id" [disabled]="mode==1" formControlName="machine_id">
+                <div *ngIf="getTheFormGroup.machine_id.errors && (getTheFormGroup.machine_id.dirty || getTheFormGroup.machine_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.machine_id.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.machine_id.errors.min" class="msnError">Debe ser mayor o igual a 1</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Operator ID -->
+            <div class="row mb-3">
+              <div class="col-3">ID Operador</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="shift.operator_id" [disabled]="mode==1" formControlName="operator_id">
+                <div *ngIf="getTheFormGroup.operator_id.errors && (getTheFormGroup.operator_id.dirty || getTheFormGroup.operator_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.operator_id.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.operator_id.errors.min" class="msnError">Debe ser mayor o igual a 1</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-success" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-warning" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Tarifas</h3>
+        </div>
+        <div class="card-body">
+         <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Número</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Monto</th>
+              <th scope="col">Factura</th>
+              <th scope="col">Servicio</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fee of fees">
+              <td>{{ fee.id }}</td>
+              <td>{{ fee.fee_number }}</td>
+              <td>{{ fee.fee_date | date: 'yyyy-MM-dd' }}</td>
+              <td>{{ fee.fee_amount | currency:'USD' }}</td>
+              <td>{{ fee.invoice_id }}</td>
+              <td>{{ fee.service_id }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="view(fee.id)">Ver</button>
+                <button class="btn btn-primary btn-sm" (click)="edit(fee.id)">Editar</button>
+                <button class="btn btn-danger btn-sm" (click)="delete(fee.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+         </table>
+         <div class="mt-3 text-start">
+            <button class="btn btn-success" (click)="create()">Crear</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

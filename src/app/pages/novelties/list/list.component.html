@@ -1,0 +1,42 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Novedades</h3>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">ID Turno</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let novelty of novelties">
+                <td>{{ novelty.id }}</td>
+                <td>{{ novelty.novelty_description }}</td>
+                <td>{{ novelty.shift_id }}</td>
+                <td>
+                  <button class="btn btn-primary" (click)="view(novelty.id)">Ver</button>
+                  <button class="btn btn-primary" (click)="edit(novelty.id)">Editar</button>
+                  <button class="btn btn-danger" (click)="delete(novelty.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-3 text-start">
+            <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
