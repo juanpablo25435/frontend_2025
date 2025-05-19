@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Invoice } from 'src/app/models/invoice.model';
-import { InvoiceService } from 'src/app/services/invoice.service';
+import { Policy } from 'src/app/models/policy.model';
+import { PolicyService } from 'src/app/services/policy.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,17 +12,24 @@ import Swal from 'sweetalert2';
 })
 export class ManageComponent implements OnInit {
   mode: number; // 1->View, 2->Create, 3->Update
-  invoice: Invoice;
+  policy: Policy;
   theFormGroup: FormGroup;
   trySend: boolean;
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private invoiceService: InvoiceService,
+    private policyService: PolicyService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
-    this.invoice = { id: 0, invoice_number: '', invoice_date: new Date(), total_amount: 0 };
+    this.policy = { 
+      id: 0, 
+      policy_number: 0, 
+      start_date: new Date(), 
+      end_date: new Date(), 
+      machine_id: 0, 
+      insurance_id: 0 
+    };
     this.trySend = false;
     this.configFormGroup();
   }
@@ -37,28 +44,30 @@ export class ManageComponent implements OnInit {
       this.mode = 3;
     }
     if (this.activateRoute.snapshot.params.id) {
-      this.invoice.id = this.activateRoute.snapshot.params.id;
-      this.getInvoice(this.invoice.id);
+      this.policy.id = this.activateRoute.snapshot.params.id;
+      this.getPolicy(this.policy.id);
     }
   }
 
-  getInvoice(id: number) {
-    this.invoiceService.view(id).subscribe({
-      next: (invoice) => {
-        this.invoice = invoice;
-        console.log('Invoice fetched successfully:', this.invoice);
+  getPolicy(id: number) {
+    this.policyService.view(id).subscribe({
+      next: (policy) => {
+        this.policy = policy;
+        console.log('Policy fetched successfully:', this.policy);
       },
       error: (error) => {
-        console.error('Error fetching invoice:', error);
+        console.error('Error fetching policy:', error);
       }
     });
   }
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      invoice_number: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      invoice_date: ['', [Validators.required]],
-      total_amount: ['', [Validators.required, Validators.min(1)]]
+      policy_number: [0, [Validators.required]],
+      start_date: ['', [Validators.required]],
+      end_date: ['', [Validators.required]],
+      machine_id: [0, [Validators.required]],
+      insurance_id: [0, [Validators.required]]
     });
   }
 
@@ -67,10 +76,11 @@ export class ManageComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/invoices/list']);
+    this.router.navigate(['/policies/list']);
   }
 
   create() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -80,23 +90,24 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.create(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice created successfully:', invoice);
+    this.policyService.create(this.policy).subscribe({
+      next: (policy) => {
+        console.log('Policy created successfully:', policy);
         Swal.fire({
           title: 'Creado!',
-          text: 'Registro de factura creado correctamente.',
+          text: 'Póliza creada correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/policies/list']);
       },
       error: (error) => {
-        console.error('Error creating invoice:', error);
+        console.error('Error creating policy:', error);
       }
     });
   }
 
   update() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -106,18 +117,18 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.update(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice updated successfully:', invoice);
+    this.policyService.update(this.policy).subscribe({
+      next: (policy) => {
+        console.log('Policy updated successfully:', policy);
         Swal.fire({
           title: 'Actualizado!',
-          text: 'Registro de factura actualizado correctamente.',
+          text: 'Póliza actualizada correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/policies/list']);
       },
       error: (error) => {
-        console.error('Error updating invoice:', error);
+        console.error('Error updating policy:', error);
       }
     });
   }

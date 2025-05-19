@@ -1,0 +1,44 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Pólizas</h3>
+        </div>
+        <div class="card-body">
+         <table class="table">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Número de Póliza</th>
+            <th scope="col">Fecha Inicio</th>
+            <th scope="col">Fecha Fin</th>
+            <th scope="col">ID Máquina</th>
+            <th scope="col">ID Seguro</th>
+            <th scope="col">Opciones</th>
+          </tr>
+          <tr *ngFor="let policy of policies">
+            <td>{{policy.id}}</td>
+            <td>{{policy.policy_number}}</td>
+            <td>{{policy.start_date | date}}</td>
+            <td>{{policy.end_date | date}}</td>
+            <td>{{policy.machine_id}}</td>
+            <td>{{policy.insurance_id}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="view(policy.id)">Ver</button>
+              <button class="btn btn-primary" (click)="edit(policy.id)">Editar</button>
+              <button class="btn btn-danger" (click)="delete(policy.id)">Eliminar</button>
+            </td>
+          </tr>
+         </table>
+          <div class="mt-3 text-start">
+              <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

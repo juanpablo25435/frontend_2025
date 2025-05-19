@@ -205,6 +205,42 @@ const routes: Routes = [
           ),
       },
     ],
+  },
+  {
+    path: "gps",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/gps/gps.module").then(
+            (m) => m.GpsModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "policies",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/policies/policies.module").then(
+            (m) => m.PoliciesModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "messages",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/messages/messages.module").then(
+            (m) => m.MessagesModule
+          ),
+      },
+    ],
   }
 ];
 @NgModule({

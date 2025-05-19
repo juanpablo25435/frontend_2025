@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Invoice } from 'src/app/models/invoice.model';
-import { InvoiceService } from 'src/app/services/invoice.service';
+import { Message } from 'src/app/models/message.model';
+import { MessageService } from 'src/app/services/message.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,17 +12,22 @@ import Swal from 'sweetalert2';
 })
 export class ManageComponent implements OnInit {
   mode: number; // 1->View, 2->Create, 3->Update
-  invoice: Invoice;
+  message: Message;
   theFormGroup: FormGroup;
   trySend: boolean;
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private invoiceService: InvoiceService,
+    private messageService: MessageService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
-    this.invoice = { id: 0, invoice_number: '', invoice_date: new Date(), total_amount: 0 };
+    this.message = { 
+      id: 0, 
+      user_id: 0,
+      chat_id: 0,
+      message: ''
+    };
     this.trySend = false;
     this.configFormGroup();
   }
@@ -37,28 +42,28 @@ export class ManageComponent implements OnInit {
       this.mode = 3;
     }
     if (this.activateRoute.snapshot.params.id) {
-      this.invoice.id = this.activateRoute.snapshot.params.id;
-      this.getInvoice(this.invoice.id);
+      this.message.id = this.activateRoute.snapshot.params.id;
+      this.getMessage(this.message.id);
     }
   }
 
-  getInvoice(id: number) {
-    this.invoiceService.view(id).subscribe({
-      next: (invoice) => {
-        this.invoice = invoice;
-        console.log('Invoice fetched successfully:', this.invoice);
+  getMessage(id: number) {
+    this.messageService.view(id).subscribe({
+      next: (message) => {
+        this.message = message;
+        console.log('Message fetched successfully:', this.message);
       },
       error: (error) => {
-        console.error('Error fetching invoice:', error);
+        console.error('Error fetching message:', error);
       }
     });
   }
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      invoice_number: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      invoice_date: ['', [Validators.required]],
-      total_amount: ['', [Validators.required, Validators.min(1)]]
+      user_id: [0, [Validators.required]],
+      chat_id: [0, [Validators.required]],
+      message: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(500)]]
     });
   }
 
@@ -67,10 +72,11 @@ export class ManageComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/invoices/list']);
+    this.router.navigate(['/messages/list']);
   }
 
   create() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -80,23 +86,24 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.create(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice created successfully:', invoice);
+    this.messageService.create(this.message).subscribe({
+      next: (message) => {
+        console.log('Message created successfully:', message);
         Swal.fire({
           title: 'Creado!',
-          text: 'Registro de factura creado correctamente.',
+          text: 'Mensaje creado correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/messages/list']);
       },
       error: (error) => {
-        console.error('Error creating invoice:', error);
+        console.error('Error creating message:', error);
       }
     });
   }
 
   update() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -106,18 +113,18 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.update(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice updated successfully:', invoice);
+    this.messageService.update(this.message).subscribe({
+      next: (message) => {
+        console.log('Message updated successfully:', message);
         Swal.fire({
           title: 'Actualizado!',
-          text: 'Registro de factura actualizado correctamente.',
+          text: 'Mensaje actualizado correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/messages/list']);
       },
       error: (error) => {
-        console.error('Error updating invoice:', error);
+        console.error('Error updating message:', error);
       }
     });
   }

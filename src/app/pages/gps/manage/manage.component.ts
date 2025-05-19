@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Invoice } from 'src/app/models/invoice.model';
-import { InvoiceService } from 'src/app/services/invoice.service';
+import { Gps } from 'src/app/models/gps.model';
+import { GpsService } from 'src/app/services/gps.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,17 +12,17 @@ import Swal from 'sweetalert2';
 })
 export class ManageComponent implements OnInit {
   mode: number; // 1->View, 2->Create, 3->Update
-  invoice: Invoice;
+  gps: Gps;
   theFormGroup: FormGroup;
   trySend: boolean;
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private invoiceService: InvoiceService,
+    private gpsService: GpsService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
-    this.invoice = { id: 0, invoice_number: '', invoice_date: new Date(), total_amount: 0 };
+    this.gps = { id: 0, latitude: '', longitude: '', altitude: '', machine_id: 0 };
     this.trySend = false;
     this.configFormGroup();
   }
@@ -37,28 +37,29 @@ export class ManageComponent implements OnInit {
       this.mode = 3;
     }
     if (this.activateRoute.snapshot.params.id) {
-      this.invoice.id = this.activateRoute.snapshot.params.id;
-      this.getInvoice(this.invoice.id);
+      this.gps.id = this.activateRoute.snapshot.params.id;
+      this.getGps(this.gps.id);
     }
   }
 
-  getInvoice(id: number) {
-    this.invoiceService.view(id).subscribe({
-      next: (invoice) => {
-        this.invoice = invoice;
-        console.log('Invoice fetched successfully:', this.invoice);
+  getGps(id: number) {
+    this.gpsService.view(id).subscribe({
+      next: (gps) => {
+        this.gps = gps;
+        console.log('GPS fetched successfully:', this.gps);
       },
       error: (error) => {
-        console.error('Error fetching invoice:', error);
+        console.error('Error fetching GPS:', error);
       }
     });
   }
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      invoice_number: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      invoice_date: ['', [Validators.required]],
-      total_amount: ['', [Validators.required, Validators.min(1)]]
+      latitude: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      longitude: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      altitude: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      machine_id: [0, [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -67,10 +68,11 @@ export class ManageComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/invoices/list']);
+    this.router.navigate(['/gps/list']);
   }
 
   create() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -80,23 +82,24 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.create(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice created successfully:', invoice);
+    this.gpsService.create(this.gps).subscribe({
+      next: (gps) => {
+        console.log('GPS created successfully:', gps);
         Swal.fire({
           title: 'Creado!',
-          text: 'Registro de factura creado correctamente.',
+          text: 'GPS creado correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/gps/list']);
       },
       error: (error) => {
-        console.error('Error creating invoice:', error);
+        console.error('Error creating GPS:', error);
       }
     });
   }
 
   update() {
+    this.trySend = true;
     if (this.theFormGroup.invalid) {
       Swal.fire({
         title: 'Error!',
@@ -106,18 +109,18 @@ export class ManageComponent implements OnInit {
       });
       return;
     }
-    this.invoiceService.update(this.invoice).subscribe({
-      next: (invoice) => {
-        console.log('Invoice updated successfully:', invoice);
+    this.gpsService.update(this.gps).subscribe({
+      next: (gps) => {
+        console.log('GPS updated successfully:', gps);
         Swal.fire({
           title: 'Actualizado!',
-          text: 'Registro de factura actualizado correctamente.',
+          text: 'GPS actualizado correctamente.',
           icon: 'success',
         });
-        this.router.navigate(['/invoices/list']);
+        this.router.navigate(['/gps/list']);
       },
       error: (error) => {
-        console.error('Error updating invoice:', error);
+        console.error('Error updating GPS:', error);
       }
     });
   }

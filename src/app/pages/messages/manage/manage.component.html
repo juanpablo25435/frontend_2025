@@ -1,0 +1,84 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- Campo ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="message.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Usuario -->
+            <div class="row">
+              <div class="col-3">ID Usuario</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="message.user_id"
+                  [disabled]="mode==1" formControlName="user_id">
+                <div *ngIf="getTheFormGroup.user_id.errors && (getTheFormGroup.user_id.dirty || getTheFormGroup.user_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.user_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Chat -->
+            <div class="row">
+              <div class="col-3">ID Chat</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="message.chat_id"
+                  [disabled]="mode==1" formControlName="chat_id">
+                <div *ngIf="getTheFormGroup.chat_id.errors && (getTheFormGroup.chat_id.dirty || getTheFormGroup.chat_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.chat_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Mensaje -->
+            <div class="row">
+              <div class="col-3">Mensaje</div>
+              <div class="col-9">
+                <textarea class="form-control" [(ngModel)]="message.message"
+                  [disabled]="mode==1" formControlName="message" rows="3"></textarea>
+                <div *ngIf="getTheFormGroup.message.errors && (getTheFormGroup.message.dirty || getTheFormGroup.message.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.message.errors.required" class="msnError">Requerido</strong>
+                  <strong *ngIf="getTheFormGroup.message.errors.minlength" class="msnError">
+                    Mínimo {{getTheFormGroup.message.errors.minlength.requiredLength}} caracteres
+                  </strong>
+                  <strong *ngIf="getTheFormGroup.message.errors.maxlength" class="msnError">
+                    Máximo {{getTheFormGroup.message.errors.maxlength.requiredLength}} caracteres
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary brn-block" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary brn-block" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

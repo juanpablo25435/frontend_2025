@@ -1,0 +1,104 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0" *ngIf="mode==1">Detalle</h3>
+          <h3 class="mb-0" *ngIf="mode==2">Creación</h3>
+          <h3 class="mb-0" *ngIf="mode==3">Actualización</h3>
+        </div>
+        <form class="form" [formGroup]="theFormGroup">
+          <div class="card-body container">
+            <!-- Campo ID -->
+            <div class="row">
+              <div class="col-3">ID</div>
+              <div class="col-9">
+                <input type="text" class="form-control" [value]="policy.id" [disabled]="true">
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Número de Póliza -->
+            <div class="row">
+              <div class="col-3">Número de Póliza</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="policy.policy_number"
+                  [disabled]="mode==1" formControlName="policy_number">
+                <div *ngIf="getTheFormGroup.policy_number.errors && (getTheFormGroup.policy_number.dirty || getTheFormGroup.policy_number.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.policy_number.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Fecha Inicio -->
+            <div class="row">
+              <div class="col-3">Fecha Inicio</div>
+              <div class="col-9">
+                <input type="date" class="form-control" [(ngModel)]="policy.start_date"
+                  [disabled]="mode==1" formControlName="start_date">
+                <div *ngIf="getTheFormGroup.start_date.errors && (getTheFormGroup.start_date.dirty || getTheFormGroup.start_date.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.start_date.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo Fecha Fin -->
+            <div class="row">
+              <div class="col-3">Fecha Fin</div>
+              <div class="col-9">
+                <input type="date" class="form-control" [(ngModel)]="policy.end_date"
+                  [disabled]="mode==1" formControlName="end_date">
+                <div *ngIf="getTheFormGroup.end_date.errors && (getTheFormGroup.end_date.dirty || getTheFormGroup.end_date.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.end_date.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Máquina -->
+            <div class="row">
+              <div class="col-3">ID Máquina</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="policy.machine_id"
+                  [disabled]="mode==1" formControlName="machine_id">
+                <div *ngIf="getTheFormGroup.machine_id.errors && (getTheFormGroup.machine_id.dirty || getTheFormGroup.machine_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.machine_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Campo ID Seguro -->
+            <div class="row">
+              <div class="col-3">ID Seguro</div>
+              <div class="col-9">
+                <input type="number" class="form-control" [(ngModel)]="policy.insurance_id"
+                  [disabled]="mode==1" formControlName="insurance_id">
+                <div *ngIf="getTheFormGroup.insurance_id.errors && (getTheFormGroup.insurance_id.dirty || getTheFormGroup.insurance_id.touched || trySend)">
+                  <strong *ngIf="getTheFormGroup.insurance_id.errors.required" class="msnError">Requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Botones -->
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-9">
+                <button *ngIf="mode==1" class="btn btn-primary brn-block" (click)="back()">Volver</button>
+                <button *ngIf="mode==2" class="btn btn-primary brn-block" (click)="create()">Crear</button>
+                <button *ngIf="mode==3" class="btn btn-primary brn-block" (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
