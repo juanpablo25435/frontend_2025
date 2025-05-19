@@ -101,5 +101,41 @@ export const AdminLayoutRoutes: Routes = [
           loadChildren: () => import('src/app/pages/combos/combos.module').then(m => m.CombosModule)
         }
       ]
-    }
+    },
+    {
+      path: "maintenances",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/maintenances/maintenances.module").then(
+              (m) => m.MaintenancesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "fees",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/fees/fees.module").then(
+              (m) => m.FeesModule
+            ),
+        },
+      ],
+    },
+    {
+      path: "shifts",
+      children: [
+        {
+          path: "",
+          loadChildren: () =>
+            import("src/app/pages/shifts/shifts.module").then(
+              (m) => m.ShiftsModule
+            ),
+        },
+      ],
+    },
 ];

@@ -1,0 +1,47 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Turnos (Shifts)</h3>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>ID Máquina</th>
+                <th>ID Operador</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let shift of shifts">
+                <td>{{ shift.id }}</td>
+                <td>{{ shift.start_time | date: 'shortTime' }}</td>
+                <td>{{ shift.end_time | date: 'shortTime' }}</td>
+                <td>{{ shift.machine_id }}</td>
+                <td>{{ shift.operator_id }}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm" (click)="view(shift.id)">Ver</button>
+                  <button class="btn btn-primary btn-sm" (click)="edit(shift.id)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="delete(shift.id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-3 text-start">
+            <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
