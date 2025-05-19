@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CombosMachinesRoutingModule } from './combos-machines-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListComponent } from '../maintenances/list/list.component';
-import { ManageComponent } from '../maintenances/manage/manage.component';
+import { ListComponent } from '../combos-machines/list/list.component';
+import { ManageComponent } from '../combos-machines/manage/manage.component';
 
 
 @NgModule({
