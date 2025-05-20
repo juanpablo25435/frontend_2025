@@ -374,6 +374,30 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "maintenance-procedures",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/maintenance-procedures/maintenance-procedures.module").then(
+            (m) => m.MaintenanceProceduresModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "work-municipalities",
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("src/app/pages/work-municipalities/work-municipalities.module").then(
+            (m) => m.WorkMunicipalitiesModule
+          ),
+      },
+    ],
+  },
   
 ];
 @NgModule({

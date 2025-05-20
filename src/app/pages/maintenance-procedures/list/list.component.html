@@ -1,0 +1,38 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Procedimientos de Mantenimiento</h3>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">ID Procedimiento</th>
+              <th scope="col">ID Mantenimiento</th>
+              <th scope="col">Opciones</th>
+            </tr>
+            <tr *ngFor="let maintenanceProcedure of maintenanceProcedures">
+              <td>{{maintenanceProcedure.id}}</td>
+              <td>{{maintenanceProcedure.procedure_id}}</td>
+              <td>{{maintenanceProcedure.maintenance_id}}</td>
+              <td>
+                <button class="btn btn-primary" (click)="view(maintenanceProcedure.id)">Ver</button>
+                <button class="btn btn-primary" (click)="edit(maintenanceProcedure.id)">Editar</button>
+                <button class="btn btn-danger" (click)="delete(maintenanceProcedure.id)">Eliminar</button>
+              </td>
+            </tr>
+          </table>
+          <div class="mt-3 text-start">
+            <button class="btn btn-success" (click)="create()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
