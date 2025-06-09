@@ -58,7 +58,7 @@ export class ManageComponent implements OnInit {
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(100)]]
+      email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]]
     });
   }
 

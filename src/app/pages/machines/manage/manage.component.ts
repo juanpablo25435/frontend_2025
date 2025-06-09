@@ -58,14 +58,7 @@ export class ManageComponent implements OnInit {
     this.theFormGroup = this.theFormBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]],
-      model_year: [
-        new Date().getFullYear(),
-        [
-          Validators.required,
-          Validators.min(1900),
-          Validators.max(new Date().getFullYear() + 1) // Allow next year too
-        ]
-      ],
+      model_year: [''],
     });
   }
 

@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-3">Año del Modelo</div>
               <div class="col-9">
-                <input type="number" class="form-control" [(ngModel)]="machine.model_year"
+                <input type="string" class="form-control" [(ngModel)]="machine.model_year"
                   [disabled]="mode==1" formControlName="model_year" min="1900" max="2100">
                 <div *ngIf="getTheFormGroup.model_year.errors && (getTheFormGroup.model_year.dirty || getTheFormGroup.model_year.touched || trySend)">
                   <strong *ngIf="getTheFormGroup.model_year.errors.required" class="msnError">Requerido</strong>
