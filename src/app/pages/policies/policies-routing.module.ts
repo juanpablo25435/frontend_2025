@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ListComponent } from "../procedures/list/list.component";
-import { ManageComponent } from "../procedures/manage/manage.component";
+import { ListComponent } from "../policies/list/list.component";
+import { ManageComponent } from "../policies/manage/manage.component";
 
 const routes: Routes = [
   { path: "list", component: ListComponent },

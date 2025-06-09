@@ -12,8 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { ListComponent } from './pages/combos-machines/list/list.component';
-import { ManageComponent } from './pages/combos-machines/manage/manage.component';
+
 
 
 @NgModule({
@@ -29,9 +28,7 @@ import { ManageComponent } from './pages/combos-machines/manage/manage.component
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    ListComponent,
-    ManageComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
